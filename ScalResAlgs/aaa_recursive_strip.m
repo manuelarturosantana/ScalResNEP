@@ -10,7 +10,8 @@ function [pol, nfevals] = aaa_recursive_strip(f, xmin, xmax, ymin, ymax, n, m, n
     %   n : The number of points to use in x direction, 
     %   m : The number of points to use in the y direction
     %       For an even split make n odd
-    %   nworkers: Optional argument to evaluate f in parallel with n workers.
+    %   nworkers: Optional argument to evaluate f in parallel with n
+    %             workers. Pass in as 0 to not use parpool
     % Outputs:
     %     pol: The found poles in the area;
     %     nfevals: The total number of function evaluations.
@@ -136,8 +137,8 @@ function [pol, nfevals] = aaa_recursive_strip(f, xmin, xmax, ymin, ymax, n, m, n
 
             % Create new prevZ, prevF
             xmid = (xmax + xmin) / 2;
-            [pol1, nfe1] = aaa_rss(f,xmin,xmid, ymin, ymax, n, m, pol, odl);
-            [pol2, nfe2] = aaa_rss(f,xmid,xmax, ymin, ymax, n, m, pol, odr);
+            [pol1, nfe1] = aaa_rss(f,xmin,xmid, ymin, ymax, n, m, pol, odl,nworkers);
+            [pol2, nfe2] = aaa_rss(f,xmid,xmax, ymin, ymax, n, m, pol, odr,nworkers);
             pol = [pol1(:); pol2(:)];
             % m for the middle evaluation, 2*n for the top and bottom
             % refinement.
