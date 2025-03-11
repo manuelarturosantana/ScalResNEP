@@ -1,20 +1,23 @@
 % Example on subset of cd_player problem from nlevp. It has eigenvalues as
-% small as 2e-4 and as large as 0.78 in the range [-1,1]; 
-
-[coeffs,fun,F] = nlevp('cd_player');
-
+% small as 2e-4 and as large as -41.1399 in the range [-50,5]; 
 
 rng(1)
+
+% 
+[coeffs,fun,F] = nlevp('cd_player');
+
 e = polyeig(coeffs{:});
+
+
+
 xmin = -50; xmax = 5;
+% Use only the eigenvalues from the linearization in the specified range.
 e = e(e < xmax & e > xmin);
 
 dim = size(coeffs{1},1); ut = randn(1,dim); v = randn(dim,1);
 f = @(z) ut*(F(z)\v);
 
-% figure(1)
-% clf
-
+% Compute the eigenvalues.
 [pol, nfe] = aaa_recursive1d(f,xmin,xmax,250);
 
 
@@ -28,6 +31,7 @@ ax.FontSize = 16;
 axis square
 hold off
 
+% Check the Error
 max_err = 0;
 pol_max = 0;
 for ii=1:length(e)
@@ -35,6 +39,5 @@ for ii=1:length(e)
         pol_max = e(ii);
         max_err = min(abs(pol - e(ii)));
     end
-    % max_err = max(min(abs(pol - e(ii))), max_err);
 end
 max_err
