@@ -6,7 +6,11 @@
 xmin = 1; xmax = 10;
 
 % Initialize the kite and integral operator
+% Note for the Rocket use
+% curve =  Missile(n)
 n = 150;
+% The syntax (n,[],true) uses the kite parameters used in the paper,
+% although the implementation allows for more general parameters.
 curve = Kite(n,[],true);
 dl = DoubleLayer(curve);
 
@@ -18,6 +22,8 @@ I = eye(2*n, 2*n);
 % For interior problems the sign is switched for the bie_mat
 F = @(z) (1/2) * I - dl.lp_mat(z);
 f = @(z) ut*(F(z)\v);
+
+
 %% Compute the poles from the Scalarized Resolvent.
 
 figure(1)

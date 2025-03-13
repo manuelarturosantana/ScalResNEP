@@ -4,3 +4,4 @@
 - [Interior_Eigenvalues](Interior_Eigenvalues.m) Example of computing interior eigenvalues and eigenfunctions for the kite.
 - [OC_Eigenvalues](OC_Eigenvalues.m) Example of computing eigenvalues and eigenfunctions of the open circle
 - [gen_sol](gen_sol.m) Helper function for computing the eigenfunctions.
+- [High_Frequency_Eigenvalues](High_Frequency_Eigenvalues.m) Example to compute and plot the high frequency eigenvalues for the open circle and open rocket shaped cavity.

@@ -89,7 +89,7 @@ for pind = 1:10
     nexttile
     hold on
 
-    pcolor(x,y,abs(vals))
+    pcolor(x,y,abs(real(vals)))
     plot(curve.X,curve.Y,'k', 'Linewidth',2);
     shading interp;
     colormap(jet)
