@@ -2,7 +2,7 @@
 % (1,100). Non optimal implementation in terms of speed.
 
 % Load the bessel function roots.
-bessel1_100
+Bessel1_100
 xmin = 1; xmax = 100;
 e = bjz(bjz < xmax & bjz > xmin);
 
