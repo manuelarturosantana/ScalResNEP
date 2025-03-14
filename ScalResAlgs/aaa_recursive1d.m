@@ -1,4 +1,4 @@
-function [pol, nfevals] = aaa_recursive1d(f, xmin, xmax, n,imag_tol)
+function [pol, nfevals] = aaa_recursive1d(f, xmin, xmax, n,imag_tol,aaa_tol)
 % Function which uses the aaa search recursively on the real line to find the eigenvalues.
 % Inputs:
 %   f : The scalarized resolvant.
@@ -8,6 +8,7 @@ function [pol, nfevals] = aaa_recursive1d(f, xmin, xmax, n,imag_tol)
 %       
 %   imag_tol: Tolerance on the absolute value of the imaginary part of the eigenvalues used to
 %             determine if an eigenvalue is an eigenvalue or not.
+%   aaa_tol: Tolerance on the aaa algorithm
 % Outputs:
 %     pol: The found poles in the area;
 %     nfevals: The total number of function evaluations.
@@ -24,7 +25,7 @@ function [pol, nfevals] = aaa_recursive1d(f, xmin, xmax, n,imag_tol)
     for ii = 1:length(Z)
         vals(ii) = f(Z(ii));
     end
-    [~,pol] = aaa(vals,Z, 'tol', 1e-11);
+    [~,pol] = aaa(vals,Z, 'tol', aaa_tol);
     xmid = (xmin + xmax) / 2;
     
 

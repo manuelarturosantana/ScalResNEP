@@ -8,7 +8,8 @@ xmin = 1; xmax = 10;
 % Initialize the kite and integral operator
 % Note for the Rocket use
 % curve =  Missile(n)
-n = 150;
+% n = 150;
+n = 30;
 % The syntax (n,[],true) uses the kite parameters used in the paper,
 % although the implementation allows for more general parameters.
 curve = Kite(n,[],true);
@@ -30,7 +31,8 @@ figure(1)
 clf
 
 tic
-[pol, nfe] = aaa_recursive1d(f,xmin,xmax,200,1e-2);
+% [pol, nfe] = aaa_recursive1d(f,xmin,xmax,200,1e-2, 1e-11);
+[pol, nfe] = aaa_recursive1d(f,xmin,xmax,200,1e-2, 1e-2);
 toc
 
 pol = sort(pol,'ComparisonMethod','real');
