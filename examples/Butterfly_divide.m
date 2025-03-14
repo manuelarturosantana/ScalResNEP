@@ -2,7 +2,9 @@
 % Note Matlab may issue many warnings due to the secant method
 % requiring inversion of near singular matrices.
 
-
+% Note if the nlevp is not downloaded, just call the butterfly function from the Dependencies 
+% folder
+% [coeffs,fun,F] = butterfly(n,c)
 [coeffs,fun,F] = nlevp('butterfly');
 
 rng(1)

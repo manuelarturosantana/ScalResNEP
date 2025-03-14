@@ -3,7 +3,8 @@
 
 rng(1)
 
-% 
+% If the nlevp is not downloaded, just call the cd_player function from the dependencies folder
+% [coeffs,fun,F] = cd_player
 [coeffs,fun,F] = nlevp('cd_player');
 
 e = polyeig(coeffs{:});
