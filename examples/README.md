@@ -4,6 +4,7 @@
 - [ButterflyRandomVecTest](ButterflyRandomVecTest.m) Do the Butterfly example with many random vectors to test the robustness of the method.
 - [CDplayer_divide](CDplayer_divide.m)   Example of the real line algorithm from the paper for the CD player NEP case.
 - [InteriorEigenvalues](InteriorEigenvalues.m) Example of computing interior eigenvalues and eigenfunctions for the kite.
+- [KiteConvergence](KiteConvergence.m) A convergence study of the error in the discretization of the boundary integral operators. Also demonstrates how to solve a scattering problem with the integral operators.
 - [OCEigenvalues](OCEigenvalues.m) Example of computing eigenvalues and eigenfunctions of the open circle
 - [gen_sol](gen_sol.m) Helper function for computing the eigenfunctions.
 - [HighFrequencyExamples](HighFrequencyExamples.m) Example to compute and plot the high frequency eigenvalues for the open circle and open rocket shaped cavity.
