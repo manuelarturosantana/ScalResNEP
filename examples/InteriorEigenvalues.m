@@ -1,4 +1,3 @@
-
 % Script which demonstrates computing real eigenvalues of the kite using
 % the real line adaptive algorithm
 
@@ -8,8 +7,8 @@ xmin = 1; xmax = 10;
 % Initialize the kite and integral operator
 % Note for the Rocket use
 % curve =  Missile(n)
-% n = 150;
-n = 30;
+n = 150;
+% n = 15; Use this for the low tolerance values.
 % The syntax (n,[],true) uses the kite parameters used in the paper,
 % although the implementation allows for more general parameters.
 curve = Kite(n,[],true);
@@ -31,8 +30,8 @@ figure(1)
 clf
 
 tic
-% [pol, nfe] = aaa_recursive1d(f,xmin,xmax,200,1e-2, 1e-11);
-[pol, nfe] = aaa_recursive1d(f,xmin,xmax,200,1e-2, 1e-2);
+[pol, nfe] = aaa_recursive1d(f,xmin,xmax,200,1e-2, 1e-11);
+% [pol, nfe] = aaa_recursive1d(f,xmin,xmax,500,1e-2, 1e-2); % Use this for the low tolerance example.
 toc
 
 pol = sort(pol,'ComparisonMethod','real');
