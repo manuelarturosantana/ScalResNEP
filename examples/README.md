@@ -1,6 +1,8 @@
 # Examples
-- [butterfly](butterfly.m) Example from the paper of the NEP with butterfly shaped spectrum
-- [cdplayer](cdplayer.m)   Example of the real line algorithm from the paper for the CD player NEP case.
+- [bessel1_100.m](bessel1_100.m) File containing roots of all bessel functions between 1 and 100.
+- [Butterfly_divide](Butterfly_divide.m) Example from the paper of the NEP with butterfly shaped spectrum
+- [ButterflyRandomVecTest](ButterflyRandomVecTest.m) Do the Butterfly example with many random vectors to test the robustness of the method.
+- [CDplayer_divide](CDplayer_divide.m)   Example of the real line algorithm from the paper for the CD player NEP case.
 - [InteriorEigenvalues](InteriorEigenvalues.m) Example of computing interior eigenvalues and eigenfunctions for the kite.
 - [OCEigenvalues](OCEigenvalues.m) Example of computing eigenvalues and eigenfunctions of the open circle
 - [gen_sol](gen_sol.m) Helper function for computing the eigenfunctions.

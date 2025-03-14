@@ -8,18 +8,22 @@
 % Notes
 %  1.) one difference between this implementation and the paper. In this implementation
 % the secant method is applied after every recursive step, rather than just at the end. This 
-% change makes the method converge faster if AAA is returning many false polse.
+% change makes the method converge faster if AAA is returning many false
+% polse. One easy way to run this is to run this as in the paper is to call
+% aaa_recursive with secant_method = false, and then call sec_ref.m
 %
 % 2.) The functions aaa_rec and eval_f in this script contain parallel for loops. If you don't
 % have access to the parallel computing tool box search fot the parfor loops and replace with
-% the for loops.
+% the for loops. Note for small problems, like the butterfly this will
+% actually be slower. It can be very helpful however for the high frequency
+% Laplace eigenvalue problems considered.
 
 function pol = aaa_recursive(f,rp)
     % Function which computes the poles of f using a recursive aaa application within the 
     % bounds of the box specified.
     % Inputs: 
     %   f: The scalar function to find the poles of.
-    %   rp: The problem structure from rec_params. type doc rec_params for more details on
+    %   rp: The problem structure from rec_params.m type doc rec_params for more details on
     %       hyperparameters.
 
     % Initial Approximation is that there is not poles inside.
@@ -70,7 +74,8 @@ function pol = aaa_rec(f,rp, xmin, xmax, ymin, ymax, prev_pol, prs, rec_num)
     % Reduce the number of poles to just the ones inside current box
     pol      = inrectangle(pol,xmin,xmax,ymin,ymax);
     if rp.use_secant
-        parfor pind = 1:length(pol)
+        %parfor pind = 1:length(pol)
+        for pind = 1:length(pol)
             cp = pol(pind);
             [x, ~, ~, x_diff] = secant_method_s(@(z) 1 / f(z), cp,cp+rp.x1_diff,...
                 rp.msec_its, rp.sec_tol, xmin,xmax,ymin,ymax);
@@ -227,7 +232,8 @@ function [fvals,Z, top,left,bottom,right,fsl,fsb,fsr,fst] = eval_f(f,rp,prs,top,
 
 
     % Returns a column vector of f evaluated at the points Z
-    parfor ii = 1:length(Z)
+    for ii = 1:length(Z)
+    %parfor ii = 1:length(Z)
         vals(ii) = f(Z(ii));
     end
 
