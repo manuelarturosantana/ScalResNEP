@@ -16,7 +16,7 @@ dl = DoubleLayer(curve);
 
 
 % Scalarized resolvent.
-ut = randn(1,2*n); v = randn(2*n,1);
+ut = rand(1,2*n,'like',1i); v = rand(2*n,1,'like',1i);
 I = eye(2*n, 2*n);
 
 % For interior problems the sign is switched for the bie_mat
@@ -30,7 +30,7 @@ figure(1)
 clf
 
 tic
-[pol, nfe] = aaa_recursive1d(f,xmin,xmax,200,1e-2, 1e-11);
+[pol, nfe] = aaa_recursive1d(f,xmin,xmax,200,1e-2,1e-11);
 % [pol, nfe] = aaa_recursive1d(f,xmin,xmax,500,1e-2, 1e-2); % Use this for the low tolerance example.
 toc
 
@@ -88,7 +88,7 @@ tiledlayout(2,5)
 for pind = 1:10
     nexttile
     % Here we get the eigenfunctions
-    k = pols2(pind);
+    k = pols_sec(pind);
     xmin =-2; xmax= 2; numx = 100;
     ymin = -2; ymax = 2; numy = 100;
     sol = vs(:,pind); 

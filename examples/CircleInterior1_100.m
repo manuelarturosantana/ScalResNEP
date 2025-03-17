@@ -11,7 +11,7 @@ n = 400;
 curve = Circle(n,1);
 dl = DoubleLayer(curve);
 I = eye(2*n,2*n);
- ut = randn(1,2*n); v = randn(2*n,1);
+ ut = rand(1,2*n,'like',1i); v = rand(2*n,1,'like',1i);
 F = @(z) (1/2) * I - dl.lp_mat(z);
 f = @(z) ut*(F(z)\v);
 

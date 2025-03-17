@@ -15,7 +15,7 @@ xmin = -50; xmax = 5;
 % Use only the eigenvalues from the linearization in the specified range.
 e = e(e < xmax & e > xmin);
 
-dim = size(coeffs{1},1); ut = randn(1,dim); v = randn(dim,1);
+dim = size(coeffs{1},1); ut = rand(1,dim); v = rand(dim,1);
 f = @(z) ut*(F(z)\v);
 
 % Compute the eigenvalues.

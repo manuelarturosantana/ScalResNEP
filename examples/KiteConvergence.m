@@ -11,7 +11,7 @@
 % exp(1i* k * p * curve.xs) where p is the direction of the plane wave.
 % In this case rather than use the sol_func as a true solution just a 
 % convergence analysis should be performed.
-k = 6;
+k = 2.2;
 sol_func = @(x) besselh(0,k * x);
 
 

@@ -12,7 +12,7 @@ n = 200;
 ap = pi/4; % Controls the size of the opening.
 curve = Build_Curve("circular cavity",n, ap);
 lp = OpenSingleLayer(curve);
-ut = randn(1,n); v = randn(n,1);
+ut = rand(1,n,'like',1i); v = rand(n,1,'like',1i);
 f = @(z) ut*(lp.bie_mat(z)\v);
 
 

@@ -10,14 +10,14 @@
 rng(1)
 % Compute the "true" eigenvalues by linearization
 e = polyeig(coeffs{:});
-dim = size(coeffs{1},1); ut = randn(1,dim); v = randn(dim,1);
+dim = size(coeffs{1},1); ut = rand(1,dim,'like',1i); v = rand(dim,1,'like',1i);
 f = @(z) ut*(F(z)\v);
 
 xmin = -2; xmax = 2; ymin = -2; ymax = 2;
 figure(1)
 clf
 
-rp = rec_params('xlims',[xmin,xmax],'ylims',[ymin,ymax],'n',50,'aaa_tol',1e-13);
+rp = rec_params('xlims',[xmin,xmax],'ylims',[ymin,ymax],'n',100,'aaa_tol',1e-13);
 pol = aaa_recursive(f,rp);
 
 
