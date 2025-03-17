@@ -4,8 +4,8 @@
 rng(1)
 
 % If the nlevp is not downloaded, just call the cd_player function from the dependencies folder
-% [coeffs,fun,F] = cd_player
-[coeffs,fun,F] = nlevp('cd_player');
+[coeffs,fun,F] = cd_player
+% [coeffs,fun,F] = nlevp('cd_player');
 
 e = polyeig(coeffs{:});
 
@@ -19,7 +19,7 @@ dim = size(coeffs{1},1); ut = rand(1,dim); v = rand(dim,1);
 f = @(z) ut*(F(z)\v);
 
 % Compute the eigenvalues.
-[pol, nfe] = aaa_recursive1d(f,xmin,xmax,250);
+[pol, nfe] = aaa_recursive1d(f,xmin,xmax,250,1e-3,1e-11);
 
 
 figure(1)
