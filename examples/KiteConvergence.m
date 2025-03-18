@@ -1,9 +1,64 @@
 %% Kite Convergence
 % Script which gives an convergence analysis for discretization of the
 % kite. Additionally this script shows how to solve the Helmholtz equation
-% for an incident plane wave.
+% for an incident plane wave. An example of how to evaluate the solution at
+% many points can be found in the file gen_sol.m
+
+%% Convergence analysis on the inverse of the integral operator.
+% This is the one mentioned in the paper
+k = 2;
+curve = Kite(2^10,[],true);
+lp    = SingleLayer(curve);
+
+p = [1,0]; p = p / norm(p); % Unit vector describing the incident direction.
+
+pw_func = @(xs) exp(1i * k * p * xs);
+
+rhs_ref = pw_func(curve.xs).';
+
+phi_ref = lp.bie_mat(k) \ rhs_ref;
 
 
+
+err = [];
+pows = (1:8);
+for ii = pows
+    
+    curve_c = Kite(2^ii,[],true);
+    lp_c    = SingleLayer(curve_c);
+
+    inds = ismembertol(curve.ts,curve_c.ts,1e-13);
+    rhs_c   = pw_func(curve_c.xs).';
+    phi_c   = lp_c.bie_mat(k) \ rhs_c;
+   
+    err  = [err, max(abs(phi_c - phi_ref(inds)))];
+
+    figure(1)
+    clf
+    hold on
+    plot(curve_c.ts,real(phi_c),'-^')
+    plot(curve.ts,real(phi_ref),'-*')
+    hold off
+end
+
+figure(1)
+clf
+semilogy(2.^pows,err,'-*');
+ylabel("Error with Refined Solution")
+xlabel("Number of points on the grid")
+
+
+
+
+
+
+%% Convergence analysis using incident field, and example of how to solve 
+% a scattering problem using the boundary integral equation code
+%
+% This is a convergence analysis on the solution evaluated at a point in
+% space for an exterior scattering problem. Just included as another
+% example of how to use the code.
+%
 % First we create a solution of the helmholtz equation which is valid everywhere
 % in the exterior of the curve by putting a point source inside the curve (here at 
 % we place the point source at the point (0,0).
@@ -35,16 +90,16 @@ for N = ns
     f_vals = sol_func(vecnorm(kite.xs)).';
     
     % Now we create the discretized layer potential operator
-    dl = DoubleLayer(kite);
+    sl = SingleLayer(kite);
     
     % Here we make the matrix corresponding to the boundary integral
     % equation
-    mat = dl.bie_mat(k);
+    mat = sl.bie_mat(k);
     phi = mat \ (f_vals);
     
     % Create the discretized representation formula for the integral
     % equation
-    sol_mat = dl.sol_rep_mat(k, test_points);
+    sol_mat = sl.sol_rep_mat(k, test_points);
     % Multiply by the density to compute the numerical solution.
     num_sol = sol_mat * phi;
 
