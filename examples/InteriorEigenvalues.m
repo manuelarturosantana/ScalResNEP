@@ -76,10 +76,12 @@ hold off
 vs = [];
 for ii = 1:length(pols_sec)
     % We use bie_mat or lp mat for exterior problems.
-    evec = comp_ns((1/2) * I - dl.lp_mat(pols_sec(ii)));
+    evec = comp_ns(sl.lp_mat(pols_sec(ii)));
+    % evec = comp_ns((1/2) * I - dl.lp_mat(pols_sec(ii)));
     vs = [vs, evec];
     % See how close to the zero vector the computed nullspace vector gives.
-    norm(((1/2) * I - dl.lp_mat(pols_sec(ii))) * evec)
+    norm(sl.lp_mat(pols_sec(ii)) * evec)
+    % norm(((1/2) * I - dl.lp_mat(pols_sec(ii))) * evec)
 end
 
 
