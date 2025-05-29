@@ -10,7 +10,7 @@ raise an issue if any questions arise.
 ### Overview of Directories
 - [Curves](Curves) Contains the code for curve parameterizations for open and closed curves.
 - [Dependencies](Dependencies) Contains stand alone versions of the AAA algorithm and the butterfly and CD player NEP from nlevp. The licenses for Chebfun and and the nlevp are also included.
-- [Examples](Examples) Contains the code to reproduce the examples in the paper.
+- [Examples](examples) Contains the code to reproduce the examples in the paper.
 - [LayerPotentials](LayerPotentials) Contains the code for the discretization of the boundary integral equations
 - [ScalResAlgs](ScalResAlgs) Contains implementations of the algorithms introduced in the paper and some utility functions.
 
